@@ -31,13 +31,19 @@ public class SSLUtil {
             System.out.println("Initializing SSLContext");
             System.out.println("Creating SecureRandom");
 
-            SecureRandom instanceStrong =
-            switch(serverOS) {
+            SecureRandom instanceStrong = null;
 
-                case SERVER_OS_WINDOWS -> SecureRandom.getInstanceStrong();
-                case SERVER_OS_LINUX   -> SecureRandom.getInstance("NativePRNGNonBlocking");
-                default -> SecureRandom.getInstanceStrong();
-            };
+            switch (serverOS) {
+                case SERVER_OS_WINDOWS:
+                    instanceStrong = SecureRandom.getInstanceStrong();
+                    break;
+                case SERVER_OS_LINUX:
+                    instanceStrong = SecureRandom.getInstance("NativePRNGNonBlocking");
+                    break;
+                default:
+                    instanceStrong = SecureRandom.getInstanceStrong();
+                    break;
+            }
 
             System.out.println("SecureRandom created");
             System.out.println("Creating SSLContext");

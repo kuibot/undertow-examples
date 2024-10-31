@@ -7,13 +7,8 @@ import java.io.IOException;
 public class UndertowHttpServer {
 
     public static void main(String[] args) throws IOException {
-        if (args.length < 2) {
-            System.out.println("Args missing: ");
-            System.out.println("ipaddress    OS");
-            return;
-        }
-        String ipAddress = args[0];
-        String operatingSystem = args[1];
+        String ipAddress = "127.0.0.1";
+        String operatingSystem = "1";
         int tcpPort = 80;
 
         System.out.println("ip address: " + ipAddress);
